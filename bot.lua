@@ -45,28 +45,30 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 	end
 
 	for i,v in ipairs(plugins) do
-		for k,w in pairs(v.triggers) do
-			if string.match(msg.text:lower(), w) then
+		if not v.inline then
+			for k,w in pairs(v.triggers) do
+				if string.match(msg.text:lower(), w) then
 
-				-- a few shortcuts
-				msg.chat.id_str = tostring(msg.chat.id)
-				msg.from.id_str = tostring(msg.from.id)
-				msg.text_lower = msg.text:lower()
+					-- a few shortcuts
+					msg.chat.id_str = tostring(msg.chat.id)
+					msg.from.id_str = tostring(msg.from.id)
+					msg.text_lower = msg.text:lower()
 
-				local success, result = pcall(function()
-					return v.action(msg)
-				end)
-				if not success then
-					sendReply(msg, 'An unexpected error occurred.')
-					print(msg.text, result)
-					return
-				end
-				-- If the action returns a table, make that table msg.
-				if type(result) == 'table' then
+					local success, result = pcall(function()
+						return v.action(msg)
+					end)
+					if not success then
+						print(msg.text, '\27[36mAn unexpected error occurred.\27[39m') --Off error msg. BUG THAT I'M NOT IN THE MOOD TO SOLVE
+						print(msg.text, result)
+						return
+					end
+					-- If the action returns a table, make that table msg.
+					if type(result) == 'table' then
 					msg = result
-				-- If the action returns true, don't stop.
-				elseif result ~= true then
-					return
+					-- If the action returns true, don't stop.
+					elseif result ~= true then
+						return
+					end
 				end
 			end
 		end

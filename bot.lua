@@ -74,6 +74,26 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 
 end
 
+inline_msg_receive = function(inline) -- The fn run whenever a inline query is received.
+	
+    for i,v in ipairs(plugins) do
+    	if v.inline_plugin then
+			for k,w in pairs(v.triggers) do
+				if string.match(inline.query:lower(), w) then
+    				local success, result = pcall(function()
+    					return v.action(inline)
+					end)
+					if not success then
+         				print(inline.query, '\27[36mAn unexpected error occurred.\27[39m')
+						return
+					end
+				end
+			end
+		end
+	end
+
+end
+
 bot_init() -- Actually start the script. Run the bot_init function.
 
 while is_started do -- Start a loop while the bot should be running.
@@ -82,7 +102,11 @@ while is_started do -- Start a loop while the bot should be running.
 	if res then
 		for i,v in ipairs(res.result) do -- Go through every new message.
 			last_update = v.update_id
-			on_msg_receive(v.message)
+			if v.message then
+				on_msg_receive(v.message)
+			elseif v.inline_query then
+				inline_msg_receive (v.inline_query)
+			end
 		end
 	else
 		print(config.errors.connection)

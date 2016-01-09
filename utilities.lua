@@ -108,3 +108,9 @@ function get_coords(input)
 	}
 
 end
+
+function inline_block(title, text) -- Inline block article
+	local ran = math.random(1 ,100)
+	local inline = '{"type":"article", "id":"'.. ran ..'", "title":"'.. title ..'", "message_text": "'.. text ..'", "parse_mode":"Markdown"}'
+	return inline
+end

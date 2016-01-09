@@ -99,6 +99,8 @@ telegram.me/otouto
 		'shout.lua',
 		-- Put new plugins here.
 		'help.lua',
-		'greetings.lua'
+		'greetings.lua',
+		-- Inline
+		'markdown.lua'
 	}
 }

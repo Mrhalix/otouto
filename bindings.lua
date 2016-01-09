@@ -40,6 +40,14 @@ getUpdates = function(offset)
 
 end
 
+sendInline = function(inline_id, result)
+
+	local url = BASE_URL .. '/answerInlineQuery?inline_query_id=' .. inline_id .. '&results=' .. result
+
+	return sendRequest(url)
+
+end
+
 sendMessage = function(chat_id, text, disable_web_page_preview, reply_to_message_id, use_markdown)
 
 	local url = BASE_URL .. '/sendMessage?chat_id=' .. chat_id .. '&text=' .. URL.escape(text)

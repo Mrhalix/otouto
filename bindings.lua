@@ -42,7 +42,7 @@ end
 
 sendInline = function(inline_id, result)
 
-	local url = BASE_URL .. '/answerInlineQuery?inline_query_id=' .. inline_id .. '&results=' .. result
+	local url = BASE_URL .. '/answerInlineQuery?inline_query_id=' .. inline_id .. '&results=' .. URL.escape(result)
 
 	return sendRequest(url)
 

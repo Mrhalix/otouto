@@ -58,7 +58,7 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 						return v.action(msg)
 					end)
 					if not success then
-						print(msg.text, '\27[36mAn unexpected error occurred.\27[39m') --Off error msg. BUG THAT I'M NOT IN THE MOOD TO SOLVE
+						sendReply(msg, 'An unexpected error occurred.')
 						print(msg.text, result)
 						return
 					end
@@ -77,23 +77,21 @@ on_msg_receive = function(msg) -- The fn run whenever a message is received.
 end
 
 inline_msg_receive = function(inline) -- The fn run whenever a inline query is received.
-	
-    for i,v in ipairs(plugins) do
-    	if v.inline_plugin then
-			for k,w in pairs(v.triggers) do
-				if string.match(inline.query:lower(), w) then
-    				local success, result = pcall(function()
-    					return v.action(inline)
-					end)
-					if not success then
-         				print(inline.query, '\27[36mAn unexpected error occurred.\27[39m')
-						return
-					end
-				end
-			end
-		end
-	end
-
+	msg = {
+		id = inline.id,
+		chat = {
+			['id'] = inline.id,
+			['title'] = 'inline', 
+			['type'] = 'inline',
+			['title'] = inline.from.fisrt_name
+			},
+		from = inline.from,
+		message_id = math.random(1, 800),
+		text = '/!/inline '..inline.query,
+		date = os.time() + 20
+	}
+	-- Convent to message
+	on_msg_receive(msg)
 end
 
 bot_init() -- Actually start the script. Run the bot_init function.

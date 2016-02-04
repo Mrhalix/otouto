@@ -14,7 +14,7 @@ local action = function(msg)
     text = text .. inline_block('Link', '_'..input..'_')..', '
     --text = text .. inline_block('None', ..input..)..', '
     text = text .. inline_block('Code', '```'..input..'```')..', '
-    text = text .. inline_block('None', ..input..)..']'
+    text = text .. inline_block('None', ''..input..'')..']'
     sendInline(msg.id, text)
 end
 

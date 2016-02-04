@@ -7,7 +7,7 @@ local triggers = {
 
 local action = function(msg)
     local input =URL.escape(msg.text:input())
-    local text = "["..inline_block('Bold', '*'..input..'*')..', '
+    local text = "["..inline_block('بولد', '*'..input..'*')..', '
     text = text .. inline_block('Italic', '_'..input..'_')..', '
     text = text .. inline_block('Code', '```'..input..'```')..']'
     sendInline(msg.id, text)

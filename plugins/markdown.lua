@@ -8,7 +8,7 @@ local triggers = {
 local action = function(msg)
     
     local input =URL.escape(msg.text:input())
-    local amin = Mrhalix\ntest\nhey
+    local amin = "Mrhalix\ntest\nhey"
     local text = "["..inline_block('Bold', '*'..input..'*')..', '
     text = text .. inline_block('Italic', '_'..input..'_')..', '
     text = text .. inline_block('Link', '_'..input..'_')..', '

@@ -11,9 +11,10 @@ local triggers = {
 local action = function(msg)
 
 	local input = msg.text:input()
+	local amin = "*MRhalix*"
 
 	if input then
-		sendMessage(msg.chat.id, latcyr(input))
+		sendMessage(msg.chat.id, latcyr(amin),use_markdown)
 	else
 		sendMessage(msg.chat.id, doc, true, msg.message_id, true)
 	end

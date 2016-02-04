@@ -12,8 +12,9 @@ local action = function(msg)
     local text = "["..inline_block('Bold', '*'..input..'*')..', '
     text = text .. inline_block('Italic', '_'..input..'_')..', '
     text = text .. inline_block('Link', '_'..input..'_')..', '
-    text = text .. inline_block('Amin', '*'..amin..'*')..', '
-    text = text .. inline_block('Code', '```'..input..'```')..']'
+    --text = text .. inline_block('None', ..input..)..', '
+    text = text .. inline_block('Code', '```'..input..'```')..', '
+    text = text .. inline_block('None', ..input..)..']'
     sendInline(msg.id, text)
 end
 

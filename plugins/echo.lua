@@ -12,7 +12,7 @@ local action = function(msg)
 
 	local input = msg.text:input()
 	local amin = "*MRhalix*"
-	local file = media/sticker.webp
+	--local file = media/sticker.webp
 	if input then
 		sendMessage(msg.chat.id, latcyr(amin), use_markdown)
 		sendReply(msg, 'Please')

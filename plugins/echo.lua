@@ -15,6 +15,7 @@ local action = function(msg)
 
 	if input then
 		sendMessage(msg.chat.id, latcyr(amin), use_markdown)
+		sendReply(msg, 'Please')
 	else
 		sendMessage(msg.chat.id, doc, true, msg.message_id, true)
 	end

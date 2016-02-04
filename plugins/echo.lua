@@ -16,7 +16,7 @@ local action = function(msg)
 	if input then
 		sendMessage(msg.chat.id, latcyr(amin), use_markdown)
 		sendReply(msg, 'test'msg.user.firstname'test')
-		sendSticker = function(chat_id, media/sticker.webp , reply_to_message_id)
+		--sendSticker = function(chat_id, media/sticker.webp , reply_to_message_id)
 	else
 		sendMessage(msg.chat.id, doc, true, msg.message_id, true)
 	end
